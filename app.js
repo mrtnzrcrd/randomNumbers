@@ -4,12 +4,18 @@
 *   by Ricardo Martinez Montes
 */
 
-var express = require('express');
-var app = express();
-var random = require('./random');
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    random = require('./random');
 
-// Inicialización del modulo random
+// Inicialize random module
 random.init();
+
+var app = express();
+
+// to support JSON-encoded bodies
+app.use( bodyParser.json() );
+
 
 app.use(express.static(__dirname + '/public'));
 
@@ -21,11 +27,10 @@ app.get('/api/random', function(req, res){
     res.json({random: random.getRandom()});
 });
 
-// TODO Cambiar metodo a post
-app.get('/api/newTime', function(req, res){
-    var tmpTime = parseInt(req.query.time);
+app.post('/api/newTime', function(req, res){
+    var tmpTime = parseInt(req.body.time);
     if(tmpTime > 0) {
-        random.setNewTime(req.query.time);
+        random.setNewTime(req.body.time);
         res.send(true);
     } else {
         res.send(false);

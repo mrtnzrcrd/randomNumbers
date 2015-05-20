@@ -8,8 +8,12 @@
     <script src="js/app.js"></script>
 </head>
 <body ng-app="masterAspApp">
-<div class="row" ng-controller="RandomController" ng-init="initInterval()">
-   <div class="row">
+<div class="container" ng-controller="RandomController" ng-init="initInterval()">
+    <div class="row">
+        <div class="page-header">
+            <h1>masterASP <small>Random Number</small></h1>
+        </div>
+    </div>
        <div class="col-md-6">
            <label>Client Time {{time}}</label>
            <input type="number" ng-model='time' placeholder="Introduce time">
@@ -20,10 +24,14 @@
            <input type="number"  ng-model='serverTime' placeholder="Introduce time">
            <button class="btn" ng-click="changeTimeOnServer()">New Server Refresh Time</button>
        </div>
-   </div>
-
-    <div class="col-md-6">
-        <div class="alert alert-{{num.type}}" ng-repeat="num in numbers" role="alert">{{num | json}}</div>
+        <div class="col-md-12">
+            <ul class="list-group">
+                <li class="list-group-item col-md-3"  ng-repeat="num in numbers">
+                    <span class="pull-right label label-{{num.type}}">{{num.number}}</span>
+                    {{num.time}}
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 </body>

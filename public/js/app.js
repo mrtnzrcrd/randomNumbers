@@ -34,11 +34,9 @@ angular.module('masterAspApp', [])
         };
 
         $scope.changeTimeOnServer = function () {
-            $http.get('/api/newTime',
+            $http.post('/api/newTime',
                 {
-                    params: {
-                        time: $scope.serverTime
-                    }
+                    time: $scope.serverTime
                 })
                 .success(function (data) {
                     var type = 'success';
