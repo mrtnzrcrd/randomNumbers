@@ -1,5 +1,5 @@
-// Node dependencies 
+# Node dependencies 
 npm install express
 
-// Run app
+# Run app
 node app.js
